@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>User List</h2>
+    <ul id="userList"></ul>
+    <a href="add_user.html" class="link">Add Another User</a>
+  </div>
+
+  <script>
+    const userList = document.getElementById('userList');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    if (users.length === 0) {
+      userList.innerHTML = "<li>No users found.</li>";
+    } else {
+      users.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = `👤 ${user.username} - 📧 ${user.email}`;
+        userList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
